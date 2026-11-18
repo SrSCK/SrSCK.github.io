@@ -1,0 +1,35 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>AI Robotic Arm for Playing Chess | Sorawat Srisuphantavorn</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230b1210'/%3E%3Cpath d='M8 17l5 6 11-14' fill='none' stroke='%235cc8b2' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"><meta name="description" content="Building AI systems people can trust. Final-year Robotics and AI Engineering student at KMITL. Open to AI engineering roles and research opportunities."><link rel="canonical" href="https://srsck.github.io/work/ai-robotic-arm-for-playing-chess/"><meta property="og:type" content="website"><meta property="og:title" content="AI Robotic Arm for Playing Chess | Sorawat Srisuphantavorn"><meta property="og:description" content="Building AI systems people can trust. Final-year Robotics and AI Engineering student at KMITL. Open to AI engineering roles and research opportunities."><meta property="og:url" content="https://srsck.github.io/work/ai-robotic-arm-for-playing-chess/"><meta property="og:image" content="https://srsck.github.io/og.jpg"><meta name="twitter:card" content="summary_large_image"><script>
+      document.documentElement.classList.add('js');
+      try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch {}
+    </script><script>
+        (() => {
+          let seen = false;
+          try { seen = sessionStorage.getItem('seen'); } catch {}
+          if (seen || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+          const root = document.documentElement;
+          root.classList.add('loading');
+          // Never leave the page covered if a script fails to arrive.
+          setTimeout(() => root.classList.remove('loading'), 5000);
+        })();
+      </script><link rel="stylesheet" href="/_astro/Layout.BqG7gABX.css"></head><body class="museum"><div id="loader" aria-hidden="true"><span></span></div><div class="ring" aria-hidden="true"></div><a class="skip" href="#main">Skip to content</a><header class="bar"><a href="/" class="bar-name">Chokun</a><span class="bar-place">Bangkok, Thailand (GMT+7) <time id="clock"></time></span><button id="theme" type="button" aria-label="Switch colour theme">Theme</button></header><main id="main"><article class="page" id="ai-robotic-arm-for-playing-chess"><header class="entrance"><p class="back"><a href="/">← Work</a></p><h1 style="view-transition-name: t-ai-robotic-arm-for-playing-chess">AI Robotic Arm for Playing Chess</h1></header><dl class="meta"><div><dt>Type</dt><dd>Group project</dd></div></dl><div class="prose wall-text"><p>A group project to build an autonomous robot that can play a physical game of chess against a human.</p>
+<ul>
+<li><p>Implemented a CNN-based move prediction model to analyze the board and determine the best move.</p>
+</li>
+<li><p>Processed board images from a camera using OpenCV for real-time piece detection and board state recognition.</p>
+</li>
+<li><p>Calculated inverse kinematics and wrote the control logic to translate the AI&#39;s move into precise robotic arm coordinates.</p>
+</li>
+</ul>
+</div><div class="rooms"></div><a class="next" href="/work/abb-robot-arm-programming/"><span class="next-title">ABB Robot Arm Programming</span></a></article></main><footer class="foot"><p class="foot-line">Building AI systems people can trust.</p><p class="small">© 2026 Sorawat Srisuphantavorn</p></footer><script>
+      const clock = document.getElementById('clock');
+      const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Bangkok', hour: '2-digit', minute: '2-digit' });
+      const tick = () => { clock.textContent = fmt.format(new Date()); };
+      tick();
+      setInterval(tick, 30000);
+      document.getElementById('theme').addEventListener('click', () => {
+        const root = document.documentElement;
+        const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.theme = dark ? 'light' : 'dark';
+        try { localStorage.setItem('theme', root.dataset.theme); } catch {}
+      });
+    </script><script type="module" src="/_astro/Layout.astro_astro_type_script_index_0_lang.BNLC8zwA.js"></script></body></html>

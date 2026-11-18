@@ -1,0 +1,40 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Money Printer | Sorawat Srisuphantavorn</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230b1210'/%3E%3Cpath d='M8 17l5 6 11-14' fill='none' stroke='%235cc8b2' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"><meta name="description" content="An agent pipeline that writes, voices, edits, schedules and analyses a YouTube channel of history Shorts, posting twice a day without manual editing."><link rel="canonical" href="https://srsck.github.io/work/money-printer/"><meta property="og:type" content="website"><meta property="og:title" content="Money Printer | Sorawat Srisuphantavorn"><meta property="og:description" content="An agent pipeline that writes, voices, edits, schedules and analyses a YouTube channel of history Shorts, posting twice a day without manual editing."><meta property="og:url" content="https://srsck.github.io/work/money-printer/"><meta property="og:image" content="https://srsck.github.io/og.jpg"><meta name="twitter:card" content="summary_large_image"><script>
+      document.documentElement.classList.add('js');
+      try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch {}
+    </script><script>
+        (() => {
+          let seen = false;
+          try { seen = sessionStorage.getItem('seen'); } catch {}
+          if (seen || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+          const root = document.documentElement;
+          root.classList.add('loading');
+          // Never leave the page covered if a script fails to arrive.
+          setTimeout(() => root.classList.remove('loading'), 5000);
+        })();
+      </script><link rel="stylesheet" href="/_astro/Layout.BqG7gABX.css"></head><body class="museum"><div id="loader" aria-hidden="true"><span></span></div><div class="ring" aria-hidden="true"></div><a class="skip" href="#main">Skip to content</a><header class="bar"><a href="/" class="bar-name">Chokun</a><span class="bar-place">Bangkok, Thailand (GMT+7) <time id="clock"></time></span><button id="theme" type="button" aria-label="Switch colour theme">Theme</button></header><main id="main"><article class="page" id="money-printer"><header class="entrance"><p class="back"><a href="/">← Work</a></p><h1 style="view-transition-name: t-money-printer">Money Printer</h1><p class="summary">An agent pipeline that writes, voices, edits, schedules and analyses a YouTube channel of history Shorts, posting twice a day without manual editing.</p></header><dl class="glance"><div><dt>Built</dt><dd>Each day an agent writes short scripts about true stories from history into a queue.</dd></div><div><dt>Rule</dt><dd>Any new automation must fail closed if it cannot verify which channel it is about to post to.</dd></div><div><dt>Lesson</dt><dd>The hard parts were failure handling, scheduling and knowing when the data is too thin to draw a conclusion.</dd></div></dl><dl class="meta"><div><dt>Role</dt><dd>Sole builder and operator</dd></div><div><dt>Context</dt><dd>Personal project, 2026</dd></div><div><dt>Channel</dt><dd>Nobody Believed It (@nobodybelievedit)</dd></div><div><dt>Stack</dt><dd>Node.js, PM2, a local text-to-speech server (Kokoro voice, GPU), Archive.org and Wikimedia public-domain media, Remotion, YouTube Data API</dd></div><div><dt>Status</dt><dd>Live, auto-posting since 1 October 2026</dd></div></dl><div class="gallery"><img src="/money-printer-pipeline.png" alt="diagram of the pipeline" loading="lazy"></div><div class="rooms"><section class="room demo-room"><h2>Try it</h2><div class="room-body" data-demo="money-printer"></div></section><section class="room prose"><h2>What it does</h2><div class="room-body"><p>Each day an agent writes short scripts about true stories from history into a queue. The pipeline voices each script with a local text-to-speech model, finds public-domain footage on Archive.org (passed through a vision check and a blank-clip check) and public-domain photos from Wikimedia, applies a colour grade, normalises loudness to -14 LUFS, renders the Short and schedules two uploads a day at times chosen for a US evening audience. Separate analyst agents then pull channel data every day and write reports on traffic sources, audience, first-two-day views and retention.</p>
+</div></section><section class="room prose"><h2>Decisions that matter</h2><div class="room-body"><ul>
+<li>Everything runs on free tools and public-domain media only.</li>
+<li>No automated engagement comments, because they look like a bot.</li>
+<li>New formats need my explicit approval before anything is published.</li>
+<li>Any new automation must fail closed if it cannot verify which channel it is about to post to.</li>
+<li>The Claude track and the Codex track (a separate vertical-drama workflow for a channel that does not exist yet) never share credentials, schedules or analytics.</li>
+</ul>
+</div></section><section class="room prose"><h2>Where it stands</h2><div class="room-body"><p>The channel is small and not monetised. After a format change, first-two-day views dropped sharply, and I recorded the cause as unproven rather than guessing. A 16:9 long-form pilot (8.4 minutes, five stories) has been rendered but not published.</p>
+</div></section><section class="room prose"><h2>Honest limits</h2><div class="room-body"><ul>
+<li>Growth is slow and the cause of the recent drop is not yet known.</li>
+<li>The YouTube login token expires every 7 days until the app&#39;s consent screen is moved to production.</li>
+</ul>
+</div></section><section class="room prose"><h2>What I took away</h2><div class="room-body"><p>Running a pipeline that posts for real teaches different lessons from a demo. The hard parts were failure handling, scheduling and knowing when the data is too thin to draw a conclusion.</p>
+</div></section><section class="room"><h2>The work</h2><div class="room-body exhibits"><figure class="exhibit"><img src="/money-frame.jpg" alt="Frame from a Money Printer video" loading="lazy"><figcaption>Frame from a Money Printer video</figcaption></figure></div></section></div><a class="next" href="/work/teambrain/"><span class="next-title">teambrain</span></a></article></main><footer class="foot"><p class="foot-line">Building AI systems people can trust.</p><p class="small">© 2026 Sorawat Srisuphantavorn</p></footer><script>
+      const clock = document.getElementById('clock');
+      const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Bangkok', hour: '2-digit', minute: '2-digit' });
+      const tick = () => { clock.textContent = fmt.format(new Date()); };
+      tick();
+      setInterval(tick, 30000);
+      document.getElementById('theme').addEventListener('click', () => {
+        const root = document.documentElement;
+        const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.theme = dark ? 'light' : 'dark';
+        try { localStorage.setItem('theme', root.dataset.theme); } catch {}
+      });
+    </script><script type="module" src="/_astro/Layout.astro_astro_type_script_index_0_lang.BNLC8zwA.js"></script></body></html>

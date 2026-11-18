@@ -1,0 +1,37 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>HSK Learning App | Sorawat Srisuphantavorn</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230b1210'/%3E%3Cpath d='M8 17l5 6 11-14' fill='none' stroke='%235cc8b2' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"><meta name="description" content="A web app I built to teach myself Chinese, covering the HSK 1 to 4 syllabus with spaced repetition, stroke-order practice and quizzes that are hard to guess."><link rel="canonical" href="https://srsck.github.io/work/hsk-learning-app/"><meta property="og:type" content="website"><meta property="og:title" content="HSK Learning App | Sorawat Srisuphantavorn"><meta property="og:description" content="A web app I built to teach myself Chinese, covering the HSK 1 to 4 syllabus with spaced repetition, stroke-order practice and quizzes that are hard to guess."><meta property="og:url" content="https://srsck.github.io/work/hsk-learning-app/"><meta property="og:image" content="https://srsck.github.io/og.jpg"><meta name="twitter:card" content="summary_large_image"><script>
+      document.documentElement.classList.add('js');
+      try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch {}
+    </script><script>
+        (() => {
+          let seen = false;
+          try { seen = sessionStorage.getItem('seen'); } catch {}
+          if (seen || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+          const root = document.documentElement;
+          root.classList.add('loading');
+          // Never leave the page covered if a script fails to arrive.
+          setTimeout(() => root.classList.remove('loading'), 5000);
+        })();
+      </script><link rel="stylesheet" href="/_astro/Layout.BqG7gABX.css"></head><body class="museum"><div id="loader" aria-hidden="true"><span></span></div><div class="ring" aria-hidden="true"></div><a class="skip" href="#main">Skip to content</a><header class="bar"><a href="/" class="bar-name">Chokun</a><span class="bar-place">Bangkok, Thailand (GMT+7) <time id="clock"></time></span><button id="theme" type="button" aria-label="Switch colour theme">Theme</button></header><main id="main"><article class="page" id="hsk-learning-app"><header class="entrance"><p class="back"><a href="/">← Work</a></p><h1 style="view-transition-name: t-hsk-learning-app">HSK Learning App</h1><p class="summary">A web app I built to teach myself Chinese, covering the HSK 1 to 4 syllabus with spaced repetition, stroke-order practice and quizzes that are hard to guess.</p></header><dl class="glance"><div><dt>Built</dt><dd>The app follows a 39-week plan through 339 lessons covering 2,026 words and 339 grammar points, with meanings and grammar explanations in Thai.</dd></div><div><dt>Tested</dt><dd>Database security rules have automated tests that run on a local emulator, never against production.</dd></div><div><dt>Lesson</dt><dd>A quiz that is easy to game measures nothing.</dd></div></dl><dl class="meta"><div><dt>Role</dt><dd>Sole builder and main user</dd></div><div><dt>Context</dt><dd>Personal, 2026</dd></div><div><dt>Stack</dt><dd>Vanilla JavaScript, Firebase (Auth, Firestore, Hosting), HanziWriter, browser Web Speech API</dd></div><div><dt>Status</dt><dd>Live</dd></div></dl><div class="gallery"><img src="/hsk-lesson.jpg" alt="screenshot of a lesson card and a stroke-order exercise" loading="lazy"></div><div class="rooms"><section class="room demo-room"><h2>Try it</h2><div class="room-body" data-demo="hsk-learning-app"></div></section><section class="room prose"><h2>What it does</h2><div class="room-body"><p>The app follows a 39-week plan through 339 lessons covering 2,026 words and 339 grammar points, with meanings and grammar explanations in Thai. Lessons unlock step by step. Each word has pinyin, a Thai meaning, an example sentence, audio and stroke-order practice in watch and quiz modes. A spaced-repetition scheduler decides what to review, and a library page collects every word from lessons I have passed.</p>
+</div></section><section class="room prose"><h2>Details I care about</h2><div class="room-body"><ul>
+<li>Quiz distractors are chosen to be similar to the right answer, by meaning category for meaning questions and by sound for pinyin and listening questions, so I cannot pass by guessing.</li>
+<li>The word list was cross-checked against the official HSK database, and when duplicates turned up I removed them instead of inventing replacement words.</li>
+<li>Database security rules have automated tests that run on a local emulator, never against production.</li>
+</ul>
+</div></section><section class="room prose"><h2>Honest limits</h2><div class="room-body"><ul>
+<li>Audio depends on the user&#39;s operating system having a Chinese voice installed.</li>
+<li>It uses Simplified characters, while Taiwan uses Traditional characters, so my next step is to add Traditional forms.</li>
+</ul>
+</div></section><section class="room prose"><h2>What I took away</h2><div class="room-body"><p>Building the tool made me a more disciplined learner, and the same principle as my other work applies. A quiz that is easy to game measures nothing.</p>
+</div></section></div><a class="next" href="/work/machine-learning-and-computer-vision-from-scratch/"><span class="next-title">Machine Learning and Computer Vision from Scratch</span></a></article></main><footer class="foot"><p class="foot-line">Building AI systems people can trust.</p><p class="small">© 2026 Sorawat Srisuphantavorn</p></footer><script>
+      const clock = document.getElementById('clock');
+      const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Bangkok', hour: '2-digit', minute: '2-digit' });
+      const tick = () => { clock.textContent = fmt.format(new Date()); };
+      tick();
+      setInterval(tick, 30000);
+      document.getElementById('theme').addEventListener('click', () => {
+        const root = document.documentElement;
+        const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.theme = dark ? 'light' : 'dark';
+        try { localStorage.setItem('theme', root.dataset.theme); } catch {}
+      });
+    </script><script type="module" src="/_astro/Layout.astro_astro_type_script_index_0_lang.BNLC8zwA.js"></script></body></html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>My Agent Operating Setup | Sorawat Srisuphantavorn</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230b1210'/%3E%3Cpath d='M8 17l5 6 11-14' fill='none' stroke='%235cc8b2' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"><meta name="description" content="The way I build almost everything, with several AI coding agents working under shared rules, shared memory and a habit of verification."><link rel="canonical" href="https://srsck.github.io/work/my-agent-operating-setup/"><meta property="og:type" content="website"><meta property="og:title" content="My Agent Operating Setup | Sorawat Srisuphantavorn"><meta property="og:description" content="The way I build almost everything, with several AI coding agents working under shared rules, shared memory and a habit of verification."><meta property="og:url" content="https://srsck.github.io/work/my-agent-operating-setup/"><meta property="og:image" content="https://srsck.github.io/og.jpg"><meta name="twitter:card" content="summary_large_image"><script>
+      document.documentElement.classList.add('js');
+      try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch {}
+    </script><script>
+        (() => {
+          let seen = false;
+          try { seen = sessionStorage.getItem('seen'); } catch {}
+          if (seen || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+          const root = document.documentElement;
+          root.classList.add('loading');
+          // Never leave the page covered if a script fails to arrive.
+          setTimeout(() => root.classList.remove('loading'), 5000);
+        })();
+      </script><link rel="stylesheet" href="/_astro/Layout.BqG7gABX.css"></head><body class="museum"><div id="loader" aria-hidden="true"><span></span></div><div class="ring" aria-hidden="true"></div><a class="skip" href="#main">Skip to content</a><header class="bar"><a href="/" class="bar-name">Chokun</a><span class="bar-place">Bangkok, Thailand (GMT+7) <time id="clock"></time></span><button id="theme" type="button" aria-label="Switch colour theme">Theme</button></header><main id="main"><article class="page" id="my-agent-operating-setup"><header class="entrance"><p class="back"><a href="/">← Work</a></p><h1 style="view-transition-name: t-my-agent-operating-setup">My Agent Operating Setup</h1><p class="summary">The way I build almost everything, with several AI coding agents working under shared rules, shared memory and a habit of verification.</p></header><dl class="glance"><div><dt>Problem</dt><dd>Agents are fast but forgetful and overconfident.</dd></div><div><dt>Built</dt><dd>Every project has a control-center note in my Obsidian vault with a section written for the next agent, the commands that are verified to work, the current status, durable decisions and the next step.</dd></div><div><dt>Lesson</dt><dd>Writing those things down fixes more problems than switching models.</dd></div></dl><dl class="meta"><div><dt>Role</dt><dd>Designer and sole user</dd></div><div><dt>Context</dt><dd>Personal, ongoing since 2026</dd></div><div><dt>Tools</dt><dd>Claude Code (main), Codex, Hermes agent (used earlier), local models, Obsidian</dd></div><div><dt>Status</dt><dd>Ongoing</dd></div></dl><div class="rooms"><section class="room demo-room"><h2>Try it</h2><div class="room-body" data-demo="my-agent-operating-setup"></div></section><section class="room prose"><h2>Why I built it</h2><div class="room-body"><p>Agents are fast but forgetful and overconfident. I wanted them to behave like teammates who follow written rules, leave proper handoffs and prove their work before calling it done.</p>
+</div></section><section class="room prose"><h2>How it works</h2><div class="room-body"><p><strong>Shared rules.</strong> One global rule file applies to every project. It routes work by difficulty (small models for mechanical tasks, mid-size models for normal work, the largest models for architecture and high-risk changes), and each task announces which tier it uses and why. I audited my agent definitions against this table and moved several to a better-fitting tier.</p>
+<p><strong>Required habits.</strong> Default skills make every agent debug systematically, verify before reporting a task as complete, and brainstorm and stress-test plans before building.</p>
+<p><strong>Shared memory.</strong> Every project has a control-center note in my Obsidian vault with a section written for the next agent, the commands that are verified to work, the current status, durable decisions and the next step. Agents update it when they finish a task, so a new session, or a different agent, can pick up the work without me repeating myself.</p>
+<p><strong>Clear boundaries.</strong> When two agents work on related things, the notes say who owns what. In Money Printer, Claude and Codex run separate tracks and never share credentials or publishing state.</p>
+<p><strong>Knowledge library.</strong> A library folder collects what I have studied with AI help, including small retrieval corpora that agents can query. The retrieval part is still in progress.</p>
+<p><strong>Token hygiene.</strong> A command-line proxy filters long shell output before it reaches the agent, which keeps sessions cheaper and more focused.</p>
+</div></section><section class="room prose"><h2>Honest limits</h2><div class="room-body"><ul>
+<li>This setup is tuned for one person. It has not been tested with a team.</li>
+<li>I use AI to write a lot of my code, so some parts I understand at the level of design and behaviour rather than every line. Learning those internals properly is one of my goals.</li>
+</ul>
+</div></section><section class="room prose"><h2>What I took away</h2><div class="room-body"><p>Most agent failures I see are not about intelligence. They come from missing context, unclear ownership or nobody checking the result. Writing those things down fixes more problems than switching models.</p>
+</div></section></div><a class="next" href="/work/money-printer/"><span class="next-title">Money Printer</span></a></article></main><footer class="foot"><p class="foot-line">Building AI systems people can trust.</p><p class="small">© 2026 Sorawat Srisuphantavorn</p></footer><script>
+      const clock = document.getElementById('clock');
+      const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Bangkok', hour: '2-digit', minute: '2-digit' });
+      const tick = () => { clock.textContent = fmt.format(new Date()); };
+      tick();
+      setInterval(tick, 30000);
+      document.getElementById('theme').addEventListener('click', () => {
+        const root = document.documentElement;
+        const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.theme = dark ? 'light' : 'dark';
+        try { localStorage.setItem('theme', root.dataset.theme); } catch {}
+      });
+    </script><script type="module" src="/_astro/Layout.astro_astro_type_script_index_0_lang.BNLC8zwA.js"></script></body></html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Virtual Patient Simulator | Sorawat Srisuphantavorn</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230b1210'/%3E%3Cpath d='M8 17l5 6 11-14' fill='none' stroke='%235cc8b2' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"><meta name="description" content="A Thai-language AI patient that medical students interview to practise OSCE history-taking, which I made reliable enough for real practice during my internship."><link rel="canonical" href="https://srsck.github.io/work/virtual-patient-simulator/"><meta property="og:type" content="website"><meta property="og:title" content="Virtual Patient Simulator | Sorawat Srisuphantavorn"><meta property="og:description" content="A Thai-language AI patient that medical students interview to practise OSCE history-taking, which I made reliable enough for real practice during my internship."><meta property="og:url" content="https://srsck.github.io/work/virtual-patient-simulator/"><meta property="og:image" content="https://srsck.github.io/og.jpg"><meta name="twitter:card" content="summary_large_image"><script>
+      document.documentElement.classList.add('js');
+      try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch {}
+    </script><script>
+        (() => {
+          let seen = false;
+          try { seen = sessionStorage.getItem('seen'); } catch {}
+          if (seen || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+          const root = document.documentElement;
+          root.classList.add('loading');
+          // Never leave the page covered if a script fails to arrive.
+          setTimeout(() => root.classList.remove('loading'), 5000);
+        })();
+      </script><link rel="stylesheet" href="/_astro/Layout.BqG7gABX.css"></head><body class="museum"><div id="loader" aria-hidden="true"><span></span></div><div class="ring" aria-hidden="true"></div><a class="skip" href="#main">Skip to content</a><header class="bar"><a href="/" class="bar-name">Chokun</a><span class="bar-place">Bangkok, Thailand (GMT+7) <time id="clock"></time></span><button id="theme" type="button" aria-label="Switch colour theme">Theme</button></header><main id="main"><article class="page" id="virtual-patient-simulator"><header class="entrance"><p class="back"><a href="/">← Work</a></p><h1 style="view-transition-name: t-virtual-patient-simulator">Virtual Patient Simulator</h1><p class="summary">A Thai-language AI patient that medical students interview to practise OSCE history-taking, which I made reliable enough for real practice during my internship.</p></header><dl class="glance"><div><dt>Problem</dt><dd>The previous team had already deployed the system, but it was not reliable in real use because the AI patient sometimes made things up.</dd></div><div><dt>Built</dt><dd>After the patient model replies, a second, cheap model call checks the reply against the case&#39;s real clinical facts before the student sees it.</dd></div><div><dt>Result</dt><dd>Across about 50 hand-checked replies over 6 cases it made 8 confirmed catches, 1 confirmed miss and 1 borderline call.</dd></div><div><dt>Shipped</dt><dd>Frontend on Vercel, backend on Render, database on Supabase, with sign-in, admin and Thai chat verified on the deployed site.</dd></div></dl><dl class="meta"><div><dt>Role</dt><dd>Sole intern developer (AI, backend, frontend, deployment)</dd></div><div><dt>Context</dt><dd>Cooperative internship at IRPC Public Company Limited, 11 May to 23 October 2026. The main build ran from 8 to 23 September 2026.</dd></div><div><dt>Credit</dt><dd>The original prototype (FastAPI backend, React frontend, 17 case files, first prompts, speech integration) was built by a previous three-person student team. I took it over and did the work described below.</dd></div><div><dt>Stack</dt><dd>Python, FastAPI, React, PostgreSQL (Supabase), Vercel, Render, an OpenAI-compatible LLM API (GPT-4.1-mini), Groq Whisper for speech to text, PyThaiTTS</dd></div><div><dt>Status</dt><dd>Deployed</dd></div></dl><div class="rooms"><section class="room demo-room"><h2>Try it</h2><div class="room-body" data-demo="virtual-patient-simulator"></div></section><section class="room prose"><h2>What it is</h2><div class="room-body"><p>A student chats by text or voice with an AI patient, or a parent of a child patient, across 17 clinical cases. At the end the student gets a summary and an AI-graded score, and instructors review sessions in an admin dashboard.</p>
+</div></section><section class="room prose"><h2>Where it started</h2><div class="room-body"><p>The previous team had already deployed the system, but it was not reliable in real use because the AI patient sometimes made things up. A student cannot learn diagnosis from a patient who denies the very symptom that points to it. My first audit found ten gaps, including sessions that lived only in memory, no check at all on what the model said, weak authentication and a dead API key. The raw API error, including a fragment of the key, was even showing up inside the patient&#39;s chat bubble.</p>
+</div></section><section class="room prose"><h2>What I built</h2><div class="room-body"><p><strong>Output validator (my main AI contribution).</strong> After the patient model replies, a second, cheap model call checks the reply against the case&#39;s real clinical facts before the student sees it. It runs at temperature 0 with JSON output and flags four failure types.</p>
+<table>
+<thead>
+<tr>
+<th>Failure type</th>
+<th>Meaning</th>
+<th>Real example caught</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Contradiction</td>
+<td>denies or states something that conflicts with the case</td>
+<td>a mother denied leg swelling that the case documents</td>
+</tr>
+<tr>
+<td>Invention</td>
+<td>adds a clinical detail the case never mentions</td>
+<td>&quot;child looked lethargic&quot; when the case says the child is playing well</td>
+</tr>
+<tr>
+<td>Leak</td>
+<td>states the diagnosis the student should work out</td>
+<td></td>
+</tr>
+<tr>
+<td>Implausible</td>
+<td>behaviour that is wrong for the patient&#39;s age</td>
+<td>a 9-month-old who &quot;tries to drink water&quot; by themself</td>
+</tr>
+</tbody></table>
+<p>A flagged reply is regenerated with a correction hint, up to two times. If the judge call itself fails, the reply passes through, so a broken check never blocks a student. In exam mode the validator is always on.</p>
+<p><strong>Results, stated honestly.</strong> Across about 50 hand-checked replies over 6 cases it made 8 confirmed catches, 1 confirmed miss and 1 borderline call. On a real 12-turn run it caught 2 hallucinations, including the patient denying a sore throat, which is the key clue for post-streptococcal glomerulonephritis in that case. It cost about 19 percent more tokens (39,674 versus 33,431).</p>
+<p><strong>Session scoring.</strong> An LLM judge grades the whole interview from 0 to 100 against the case ground truth. It judges the process (did the student&#39;s questions surface the key facts) rather than only the final diagnosis, and returns what was covered and what was missed. If the judge fails, the score is left empty instead of faking a zero.</p>
+<p><strong>Reliability.</strong> Sessions were lost whenever the server restarted, so I saved a snapshot of the conversation state after every turn and restored it on demand. I verified it with a real kill-and-restart. I also stopped raw errors from reaching students by logging them on the server and showing a safe Thai message instead.</p>
+<p><strong>Security.</strong> The admin SQL editor ran raw SQL as a database superuser. I replaced it with an allowlist plus a read-only transaction. My first two attempts at read-only mode did nothing because of autocommit, and I only found out by trying a real UPDATE against the database. The third attempt worked.</p>
+<p><strong>Persona fix.</strong> Asked about swollen lymph nodes in her child, the AI &quot;mother&quot; replied &quot;I came because my child is sick&quot;. The cause was a vague persona rule whose example phrase had become a catch-all. I rewrote it into three cases (questions about the parent, questions about the child, and genuinely unrelated questions) and re-tested it live.</p>
+<p><strong>Speech pipeline.</strong> Speech to text through Groq Whisper with re-encoding of browser recordings to WAV, a local Thai text-to-speech fallback, a medical vocabulary list in the transcription prompt, and a small rule in code that stops the correction step from flipping the speaker&#39;s gender particle (ครับ or ค่ะ).</p>
+<p><strong>Model bake-off.</strong> With no funded API key, I tested 10 free models through a proxy. Only GPT-4.1-mini produced correct, in-persona Thai, so it stayed as the development model.</p>
+<p><strong>Deployment.</strong> Frontend on Vercel, backend on Render, database on Supabase, with sign-in, admin and Thai chat verified on the deployed site.</p>
+<p>In total I made 71 commits and 14 pull requests, adding about 7,200 lines and removing about 3,000.</p>
+</div></section><section class="room prose"><h2>Honest limits</h2><div class="room-body"><ul>
+<li>The validator results come from a small sample checked by one reviewer, and the same model both generated and judged the replies.</li>
+<li>In one case the generator only softened an error after two retries instead of fixing it.</li>
+<li>The session score has not been compared with instructor grades.</li>
+<li>Full production use needs a funded API key and stronger authentication.</li>
+</ul>
+</div></section><section class="room prose"><h2>What I took away</h2><div class="room-body"><p>Put checks around the model instead of hoping a better prompt will hold. Enforce hard requirements in code. And a checker that shares the generator&#39;s model and view of the case tends to fail in the same places. That last observation became the research question I want to study in graduate school.</p>
+</div></section></div><a class="next" href="/work/my-agent-operating-setup/"><span class="next-title">My Agent Operating Setup</span></a></article></main><footer class="foot"><p class="foot-line">Building AI systems people can trust.</p><p class="small">© 2026 Sorawat Srisuphantavorn</p></footer><script>
+      const clock = document.getElementById('clock');
+      const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Bangkok', hour: '2-digit', minute: '2-digit' });
+      const tick = () => { clock.textContent = fmt.format(new Date()); };
+      tick();
+      setInterval(tick, 30000);
+      document.getElementById('theme').addEventListener('click', () => {
+        const root = document.documentElement;
+        const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.theme = dark ? 'light' : 'dark';
+        try { localStorage.setItem('theme', root.dataset.theme); } catch {}
+      });
+    </script><script type="module" src="/_astro/Layout.astro_astro_type_script_index_0_lang.BNLC8zwA.js"></script></body></html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>teambrain | Sorawat Srisuphantavorn</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230b1210'/%3E%3Cpath d='M8 17l5 6 11-14' fill='none' stroke='%235cc8b2' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"><meta name="description" content="A shared cloud workspace where a small team and all of its AI agents keep project notes and agent history in one place, with a live feed of what every agent is doing."><link rel="canonical" href="https://srsck.github.io/work/teambrain/"><meta property="og:type" content="website"><meta property="og:title" content="teambrain | Sorawat Srisuphantavorn"><meta property="og:description" content="A shared cloud workspace where a small team and all of its AI agents keep project notes and agent history in one place, with a live feed of what every agent is doing."><meta property="og:url" content="https://srsck.github.io/work/teambrain/"><meta property="og:image" content="https://srsck.github.io/og.jpg"><meta name="twitter:card" content="summary_large_image"><script>
+      document.documentElement.classList.add('js');
+      try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch {}
+    </script><script>
+        (() => {
+          let seen = false;
+          try { seen = sessionStorage.getItem('seen'); } catch {}
+          if (seen || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+          const root = document.documentElement;
+          root.classList.add('loading');
+          // Never leave the page covered if a script fails to arrive.
+          setTimeout(() => root.classList.remove('loading'), 5000);
+        })();
+      </script><link rel="stylesheet" href="/_astro/Layout.BqG7gABX.css"></head><body class="museum"><div id="loader" aria-hidden="true"><span></span></div><div class="ring" aria-hidden="true"></div><a class="skip" href="#main">Skip to content</a><header class="bar"><a href="/" class="bar-name">Chokun</a><span class="bar-place">Bangkok, Thailand (GMT+7) <time id="clock"></time></span><button id="theme" type="button" aria-label="Switch colour theme">Theme</button></header><main id="main"><article class="page" id="teambrain"><header class="entrance"><p class="back"><a href="/">← Work</a></p><h1 style="view-transition-name: t-teambrain">teambrain</h1><p class="summary">A shared cloud workspace where a small team and all of its AI agents keep project notes and agent history in one place, with a live feed of what every agent is doing.</p></header><dl class="glance"><div><dt>Problem</dt><dd>Teams that use several agents (Claude Code, Codex, Cursor, Hermes) end up with context scattered across tools.</dd></div><div><dt>Built</dt><dd>An MCP server over streamable HTTP with three tools (list projects, pull context, push context), workspace tokens stored only as SHA-256 hashes, and a rate limit of 60 requests per minute per token.</dd></div><div><dt>Found</dt><dd>While testing, I found that the server connected to the database as the table owner, which silently bypassed the row-level security I had written.</dd></div></dl><dl class="meta"><div><dt>Role</dt><dd>Solo founder and developer</dd></div><div><dt>Context</dt><dd>Personal, planned as a six-week test build starting 28 August 2026</dd></div><div><dt>Stack</dt><dd>Next.js 16 (App Router), Supabase (Postgres, Auth, Storage, Realtime), Drizzle ORM, Tailwind CSS, shadcn/ui, Model Context Protocol (MCP) TypeScript SDK, Vercel</dd></div><div><dt>Status</dt><dd>Prototype. Weeks 1 to 6 of the test build are done and deployed. The product is not finished.</dd></div></dl><div class="gallery"><img src="/teambrain-feed.jpg" alt="screenshot of the live agent activity feed" loading="lazy"></div><div class="rooms"><section class="room demo-room"><h2>Try it</h2><div class="room-body" data-demo="teambrain"></div></section><section class="room prose"><h2>The idea</h2><div class="room-body"><p>Teams that use several agents (Claude Code, Codex, Cursor, Hermes) end up with context scattered across tools. teambrain keeps each project&#39;s linked notes and agent history in the cloud. Any MCP-capable agent can pull project context and write back what it did, and teammates, technical or not, watch it live in a browser. Code stays on each person&#39;s machine.</p>
+</div></section><section class="room prose"><h2>What I built</h2><div class="room-body"><ul>
+<li>A data model of eight tables (workspace, member, project, note, link, attachment, activity, invite) with row-level security policies on every table.</li>
+<li>An MCP server over streamable HTTP with three tools (list projects, pull context, push context), workspace tokens stored only as SHA-256 hashes, and a rate limit of 60 requests per minute per token. I verified it connected to Claude Code.</li>
+<li>A live, workspace-wide agent activity feed as the signature feature, grouped by actor with colour-coded avatars and per-action icons.</li>
+<li>Write modes for agent edits, with pending badges so people can see what still needs approval.</li>
+<li>Notes with wiki-style links and autocomplete, magic-link sign-in and file attachments.</li>
+</ul>
+</div></section><section class="room prose"><h2>A decision I made on purpose</h2><div class="room-body"><p>Context retrieval is two steps in version one. The agent first sees note titles, then picks what to read. I left embeddings and hybrid search for a later version to keep the six-week build small and predictable.</p>
+</div></section><section class="room prose"><h2>A security finding</h2><div class="room-body"><p>While testing, I found that the server connected to the database as the table owner, which silently bypassed the row-level security I had written. The real guard was the app&#39;s own data-access layer. I documented this rule for every future query, and in a later fix made the browser&#39;s database roles read-only.</p>
+</div></section><section class="room prose"><h2>Honest limits</h2><div class="room-body"><ul>
+<li>It is a test build, not a finished product, and it has no paying users.</li>
+<li>Email invitations only reach the owner&#39;s address until a domain is verified.</li>
+<li>Some keyboard interactions in the editor could only be verified by unit tests, not by automated browser tests.</li>
+</ul>
+</div></section><section class="room prose"><h2>What I took away</h2><div class="room-body"><p>The interesting problem is not storing notes. It is letting several agents share one memory without stepping on each other, and making their work visible enough that people can trust it.</p>
+</div></section><section class="room"><h2>The work</h2><div class="room-body exhibits"><figure class="exhibit"><img src="/teambrain-note.jpg" alt="Linked notes and connecting an agent" loading="lazy"><figcaption>Linked notes and connecting an agent</figcaption></figure></div></section></div><a class="next" href="/work/hsk-learning-app/"><span class="next-title">HSK Learning App</span></a></article></main><footer class="foot"><p class="foot-line">Building AI systems people can trust.</p><p class="small">© 2026 Sorawat Srisuphantavorn</p></footer><script>
+      const clock = document.getElementById('clock');
+      const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Bangkok', hour: '2-digit', minute: '2-digit' });
+      const tick = () => { clock.textContent = fmt.format(new Date()); };
+      tick();
+      setInterval(tick, 30000);
+      document.getElementById('theme').addEventListener('click', () => {
+        const root = document.documentElement;
+        const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.theme = dark ? 'light' : 'dark';
+        try { localStorage.setItem('theme', root.dataset.theme); } catch {}
+      });
+    </script><script type="module" src="/_astro/Layout.astro_astro_type_script_index_0_lang.BNLC8zwA.js"></script></body></html>
